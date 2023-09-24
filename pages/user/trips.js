@@ -1,21 +1,12 @@
 import * as React from "react";
 import {
-  Accordion,
-  AccordionDetails,
-  AccordionSummary,
-  Button,
   Card,
-  CardActions,
   CardContent,
   CardHeader,
-  Checkbox,
   Grid,
-  Stack,
   Typography,
   styled,
 } from "@mui/material";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import TripItinerary from "../../src/components/TripItinerary";
 import BookedTripListItem from "../../src/components/BookedTripListItem";
 
 const Item = styled(Grid)(({ theme }) => ({

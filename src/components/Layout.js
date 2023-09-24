@@ -2,8 +2,7 @@ import { Box, Container, Stack, styled } from "@mui/material";
 import NavBar from "./NavBar";
 
 const Content = styled(Box)(({ theme }) => ({
-  // background: "#f5fafe",
-  height: "100vh",
+  paddingBottom: 50,
 }));
 
 export default function Layout({ children }) {
