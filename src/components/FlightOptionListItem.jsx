@@ -1,14 +1,19 @@
 import * as React from "react";
 import Avatar from "@mui/material/Avatar";
 import { Button, Grid, Stack, Typography } from "@mui/material";
+import {
+  calculateArrivalTime,
+  formatTravelDuration,
+} from "../utils/dateTimeUtils";
 
-export default function FlightOptionListItem() {
+export default function FlightOptionListItem({
+  details,
+  selectedFlight,
+  setSelectedFlight,
+}) {
   return (
     <Grid item xs={3} md={12}>
-      <Grid
-        container
-        spacing={2}
-      >
+      <Grid container spacing={2}>
         <Grid item xs={3} md={1}>
           <Avatar
             sx={{
@@ -27,14 +32,19 @@ export default function FlightOptionListItem() {
               component={"div"}
               color="text.secondary"
             >
-              Jan 9, 2024{" "}
+              {details.date}
             </Typography>
             <Typography
               variant="body2"
               component={"div"}
               color="text.secondary"
             >
-              09:00 - 14:30{" "}
+              {details.time} -{" "}
+              {calculateArrivalTime(
+                details.date,
+                details.time,
+                details.duration
+              )}
             </Typography>
           </Stack>
         </Grid>
@@ -45,22 +55,31 @@ export default function FlightOptionListItem() {
               component={"div"}
               color="text.secondary"
             >
-              ARN - DXB{" "}
+              {details.departure} - {details.destination}
             </Typography>
             <Typography
               variant="body2"
               component={"div"}
               color="text.secondary"
             >
-              07Hrs{" "}
+              {formatTravelDuration(details.duration)}
             </Typography>
           </Stack>
         </Grid>
         <Grid item xs={6} md={3}>
-          <Button variant="contained" size="medium">
+          <Button
+            variant="contained"
+            size="medium"
+            disabled={details.id === selectedFlight.id}
+            onClick={(e) => {
+              setSelectedFlight(details);
+            }}
+          >
             <Stack>
-              <Typography variant="caption">Select </Typography>
-              <Typography variant="button">12500KR </Typography>
+              {details.id === selectedFlight.id && (
+                <Typography variant="caption">Selected </Typography>
+              )}
+              <Typography variant="button">{details.cost}KR </Typography>
             </Stack>
           </Button>
         </Grid>

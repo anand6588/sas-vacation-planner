@@ -8,23 +8,23 @@ const Category = styled(Typography)(({ theme }) => ({
   margin: "1rem",
 }));
 
-export default function Home({}) {
-  const defaultFilterValue = {
-    location: "",
-    days: 0,
-    priceRange: false,
-    priceRangeMin: 5000,
-    priceRangeMax: 50000,
-  };
+const defaultFilters = {
+  location: "",
+  days: 0,
+  priceRange: false,
+  priceRangeMin: 5000,
+  priceRangeMax: 50000,
+};
 
+export default function Home({}) {
   const [packages, setPackages] = useState([]);
 
   const [isFilterChanged, setIsFilterChanged] = useState(false);
 
-  const [filters, setFilters] = useState(defaultFilterValue);
+  const [filters, setFilters] = useState(defaultFilters);
 
   useEffect(() => {
-    setIsFilterChanged(!_.isEqual(filters, defaultFilterValue));
+    setIsFilterChanged(!_.isEqual(filters, defaultFilters));
   }, [isFilterChanged, filters]);
 
   useEffect(() => {

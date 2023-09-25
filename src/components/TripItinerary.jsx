@@ -8,8 +8,10 @@ import TimelineDot from "@mui/lab/TimelineDot";
 import HotelIcon from "@mui/icons-material/Hotel";
 import Typography from "@mui/material/Typography";
 import { Flight } from "@mui/icons-material";
+import dayjs from "dayjs";
+import { formatTravelDuration } from "../utils/dateTimeUtils";
 
-export default function TripItinerary() {
+export default function TripItinerary({ outboundFlight, inboundFlight, days }) {
   return (
     <Timeline
       position="right"
@@ -22,17 +24,19 @@ export default function TripItinerary() {
     >
       <TimelineItem>
         <TimelineSeparator>
-          <TimelineDot color="primary" >
+          <TimelineDot color="primary">
             <Flight />
           </TimelineDot>
           <TimelineConnector sx={{ bgcolor: "primary.main" }} />
         </TimelineSeparator>
         <TimelineContent sx={{ py: "12px", px: 2 }}>
           <Typography variant="button" component="span" color={"text.primary"}>
-            Oct 10, 2023 09:00
+            {dayjs(outboundFlight?.date).format("MMM DD, YYYY")}{" "}
+            {outboundFlight?.time}
           </Typography>
           <Typography variant="body2" color={"text.secondary"}>
-            Stockholm ARN (7hrs)
+            {outboundFlight?.departure} - {outboundFlight?.destination} (
+            {formatTravelDuration(outboundFlight?.duration)})
           </Typography>
         </TimelineContent>
       </TimelineItem>
@@ -52,7 +56,9 @@ export default function TripItinerary() {
           >
             Stay
           </Typography>
-          <Typography color={"text.secondary"}>7 Days in Dubai</Typography>
+          <Typography color={"text.secondary"}>
+            {days} Days in {outboundFlight?.destination}
+          </Typography>
         </TimelineContent>
       </TimelineItem>
       <TimelineItem>
@@ -64,10 +70,12 @@ export default function TripItinerary() {
         </TimelineSeparator>
         <TimelineContent sx={{ py: "12px", px: 2 }}>
           <Typography variant="button" component="span" color={"text.primary"}>
-            Oct 16, 2023 14:00
+            {dayjs(inboundFlight?.date).format("MMM DD, YYYY")}{" "}
+            {inboundFlight?.time}
           </Typography>
           <Typography variant="body2" color={"text.secondary"}>
-            Dubai DXB (6hrs)
+            {inboundFlight?.departure} - {inboundFlight?.destination} (
+            {formatTravelDuration(inboundFlight?.duration)})
           </Typography>
         </TimelineContent>
       </TimelineItem>
