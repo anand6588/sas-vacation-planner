@@ -1,55 +1,61 @@
 [
   {
+    "id": 1,
     "departureFrom": "Stockholm",
     "destination": "Dubai",
     "days": 7,
     "priceStartFrom": "12500",
-    "cheapestUpcomingDate": "01-oct-2023",
+    "cheapestUpcomingDate": "01-Oct-2023",
     "quote": "Escape the winter at a cozy apartment hotel with a beautiful beach view.",
     "description": "long description goes here"
   },
   {
+    "id": 2,
     "departureFrom": "Stockholm",
     "destination": "Hauwai",
     "days": 10,
     "priceStartFrom": "15000",
-    "cheapestUpcomingDate": "05-oct-2023",
+    "cheapestUpcomingDate": "05-Oct-2023",
     "quote": "If you only want to be away for a few days, Hauwai is absolutely perfect place.",
     "description": "long description goes here"
   },
   {
+    "id": 3,
     "departureFrom": "Stockholm",
     "destination": "Phuket",
     "days": 15,
     "priceStartFrom": "80000",
-    "cheapestUpcomingDate": "10-oct-2023",
+    "cheapestUpcomingDate": "10-Oct-2023",
     "quote": "A Trip for those who love beautiful nature with mountains and waterfalls.",
     "description": "long description goes here"
   },
   {
+    "id": 4,
     "departureFrom": "Stockholm",
     "destination": "Grand Canary",
     "days": 20,
     "priceStartFrom": "50000",
-    "cheapestUpcomingDate": "15-oct-2023",
+    "cheapestUpcomingDate": "15-Oct-2023",
     "quote": " A trip that gives you the opportunity to hang out on the golden sandy beaches.",
     "description": "long description goes here"
   },
   {
+    "id": 5,
     "departureFrom": "Stockholm",
     "destination": "Goa",
     "days": 5,
     "priceStartFrom": "45000",
-    "cheapestUpcomingDate": "20-oct-2023",
+    "cheapestUpcomingDate": "20-Oct-2023",
     "quote": "This is a perfect party dish and a fun meal to cook together with your guests.",
     "description": "long description goes here"
   },
   {
+    "id": 6,
     "departureFrom": "Stockholm",
     "destination": "Spain",
     "days": 4,
     "priceStartFrom": "20000",
-    "cheapestUpcomingDate": "25-oct-2023",
+    "cheapestUpcomingDate": "25-Oct-2023",
     "quote": "The Spanish sunny coast offers pleasant weather all year round.",
     "description": "long description goes here"
   }

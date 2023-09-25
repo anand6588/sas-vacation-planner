@@ -1,0 +1,114 @@
+[
+  {
+    "id": 1,
+    "departure": "Stockholm",
+    "destination": "Dubai",
+    "duration": 420,
+    "cost": "7500",
+    "date": "01-Oct-2023",
+    "time": "05:00",
+    "timestamp": 1696136400000,
+    "type": "economy"
+  },
+  {
+    "id": 2,
+    "departure": "Stockholm",
+    "destination": "Dubai",
+    "duration": 420,
+    "cost": "17500",
+    "date": "01-Oct-2023",
+    "time": "09:00",
+    "timestamp": 1696150800000,
+    "type": "standard"
+  },
+  {
+    "id": 3,
+    "departure": "Stockholm",
+    "destination": "Dubai",
+    "duration": 420,
+    "cost": "25700",
+    "date": "01-Oct-2023",
+    "time": "15:00",
+    "timestamp": 1696172400000,
+    "type": "business"
+  },
+  {
+    "id": 4,
+    "departure": "Stockholm",
+    "destination": "Dubai",
+    "duration": 420,
+    "cost": "40000",
+    "date": "01-Oct-2023",
+    "time": "20:00",
+    "timestamp": 1696190400000,
+    "type": "business pro"
+  },
+  {
+    "id": 5,
+    "departure": "Dubai",
+    "destination": "Stockholm",
+    "duration": 420,
+    "cost": "5000",
+    "date": "08-Oct-2023",
+    "time": "07:00",
+    "timestamp": 1696136400000,
+    "type": "economy"
+  },
+  {
+    "id": 6,
+    "departure": "Dubai",
+    "destination": "Stockholm",
+    "duration": 420,
+    "cost": "11500",
+    "date": "08-Oct-2023",
+    "time": "09:00",
+    "timestamp": 1696150800000,
+    "type": "standard"
+  },
+  {
+    "id": 7,
+    "departure": "Dubai",
+    "destination": "Stockholm",
+    "duration": 420,
+    "cost": "35700",
+    "date": "08-Oct-2023",
+    "time": "13:00",
+    "timestamp": 1696172400000,
+    "type": "business"
+  },
+  {
+    "id": 8,
+    "departure": "Dubai",
+    "destination": "Stockholm",
+    "duration": 420,
+    "cost": "80000",
+    "date": "08-Oct-2023",
+    "time": "17:00",
+    "timestamp": 1696190400000,
+    "type": "business pro"
+  },
+  {
+    "id": 9,
+    "departure": "Dubai",
+    "destination": "Stockholm",
+    "duration": 420,
+    "cost": "80000",
+    "date": "07-Oct-2023",
+    "time": "18:00",
+    "timestamp": 1696190400000,
+    "type": "business pro",
+    "comment": "test flight data to verify the flight finding logic"
+  },
+  {
+    "id": 10,
+    "departure": "Dubai",
+    "destination": "Stockholm",
+    "duration": 420,
+    "cost": "80000",
+    "date": "09-Oct-2023",
+    "time": "07:00",
+    "timestamp": 1696190400000,
+    "type": "business pro",
+    "comment": "test flight data to verify the flight finding logic"
+  }
+]

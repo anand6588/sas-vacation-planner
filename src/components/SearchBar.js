@@ -14,71 +14,104 @@ import {
   Stack,
   Tooltip,
   Typography,
+  styled,
 } from "@mui/material";
 import DaysDropdown from "./DaysDropdown";
+import { useState } from "react";
 
-function ValueLabelComponent(props) {
+const SearchBox = styled(Paper)(({ theme }) => ({
+  p: "2px 4px",
+  display: "flex",
+  alignItems: "center",
+}));
+
+const filterToSliderValue = (value) => value / 1000;
+const sliderToFilterValue = (value) => value * 1000;
+
+const ValueLabelComponent = (props) => {
   const { children, value } = props;
 
   return (
-    <Tooltip enterTouchDelay={0} placement="top" title={value * 1000}>
+    <Tooltip
+      enterTouchDelay={0}
+      placement="top"
+      title={sliderToFilterValue(value)}
+    >
       {children}
     </Tooltip>
   );
-}
+};
 
-export default function SearchBar() {
-  const [value, setValue] = React.useState([5, 50]);
-  const [displayValue, setDisplayValue] = React.useState([
-    value[0] * 1000,
-    value[1] * 1000,
+export default function SearchBar({ filters, setFilters }) {
+  const [value, setValue] = useState([
+    filterToSliderValue(filters.priceRangeMin),
+    filterToSliderValue(filters.priceRangeMax),
   ]);
 
-  const handleChange = (event, newValue) => {
+  const setPriceRangeFilter = (value) => {
+    setFilters({
+      ...filters,
+      priceRangeMin: sliderToFilterValue(value[0]),
+      priceRangeMax: sliderToFilterValue(value[1]),
+    });
+  };
+
+  const handleChange = (e, newValue) => {
     setValue(newValue);
-    setDisplayValue([newValue[0] * 1000, newValue[1] * 1000]);
   };
 
   return (
     <Grid container spacing={2} justifyContent={"center"}>
       <Grid item xs={8}>
-        <Paper
-          component="form"
-          sx={{
-            p: "2px 4px",
-            display: "flex",
-            alignItems: "center",
-          }}
-        >
+        <SearchBox component="form">
           <InputBase
             sx={{ ml: 1, flex: 1 }}
             placeholder="Search location"
             inputProps={{ "aria-label": "Search for vacation packages" }}
+            onChange={(e) =>
+              setFilters({ ...filters, location: e.target.value })
+            }
           />
-
           <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" />
-
-          <DaysDropdown />
+          <DaysDropdown
+            days={filters.days}
+            handleDateChange={(e) =>
+              setFilters({ ...filters, days: e.target.value })
+            }
+          />
 
           <IconButton type="button" sx={{ p: "10px" }} aria-label="search">
             <SearchIcon />
           </IconButton>
-        </Paper>
+        </SearchBox>
       </Grid>
       <Grid item xs={8}>
         <Stack direction={"row"}>
           <FormGroup>
             <FormControlLabel
-              control={<Checkbox defaultChecked />}
+              control={
+                <Checkbox
+                  checked={filters.priceRange}
+                  onChange={(e) => {
+                    setFilters({ ...filters, priceRange: e.target.checked });
+                  }}
+                />
+              }
               label="Price Range"
             />
           </FormGroup>
-
           <Box sx={{ width: "70%", marginTop: "10px" }}>
-            <Typography align="center" variant="button" component={"div"}>
-              {displayValue[0]}Kr - {displayValue[1]}Kr
+            <Typography
+              align="center"
+              variant="button"
+              component={"div"}
+              color={!filters.priceRange ? "text.secondary" : "text.primary"}
+            >
+              {filters.priceRangeMin} Kr - {filters.priceRangeMax} Kr
             </Typography>
             <Slider
+              onChangeCommitted={(e, value) => setPriceRangeFilter(value)}
+              disabled={!filters.priceRange}
               valueLabelDisplay="auto"
               slots={{
                 valueLabel: ValueLabelComponent,

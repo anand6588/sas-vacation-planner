@@ -1,24 +1,13 @@
 import * as React from "react";
-import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
-export default function DaysDropdown() {
-  const [days, setDays] = React.useState(7);
-
-  const handleChange = (event) => {
-    setDays(event.target.value);
-  };
-
+export default function DaysDropdown({ days, handleDateChange }) {
   return (
     <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }} size="small">
-      <Select
-        id="demo-select-small"
-        value={days}
-        label="No. of Days"
-        onChange={handleChange}
-      >
+      <Select value={days} label="No. of Days" onChange={handleDateChange}>
+        <MenuItem value={0}>Days</MenuItem>
         <MenuItem value={1}>1 Day</MenuItem>
         <MenuItem value={2}>2 Days</MenuItem>
         <MenuItem value={3}>3 Days</MenuItem>

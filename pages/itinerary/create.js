@@ -1,23 +1,20 @@
 import {
-  Avatar,
   Box,
   Button,
   Card,
-  CardActions,
   CardContent,
   CardHeader,
   Grid,
-  IconButton,
   Paper,
   Stack,
   Typography,
   styled,
 } from "@mui/material";
-import FlightIcon from "@mui/icons-material/Flight";
-import TripItinerary from "../../src/components/PackageItinerary";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import FlightOptions from "../../src/components/FlightOptions";
 import SelectedTripItinerary from "../../src/components/TripItinerary";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 
 const ContainerBox = styled(Box)(({ theme }) => ({
   backgroundColor: "primary.dark",
@@ -26,6 +23,37 @@ const ContainerBox = styled(Box)(({ theme }) => ({
 }));
 
 export default function ItineraryDetails({}) {
+  const router = useRouter();
+  const departure = router.query.departureFrom;
+  const destination = router.query.location;
+  const packageId = router.query.id;
+  const days = router.query.days;
+  const queryDate = router.query.date;
+
+  const [departureDate, setDepartureDate] = useState(null);
+  const [outboundFlights, setOutboundFlights] = useState([]);
+  const [inboundFlights, setInboundFlights] = useState([]);
+
+  useEffect(() => {
+    console.log("queryDate::::", queryDate);
+    console.log("departureDate::::", departureDate);
+    if (departure && destination && days) {
+      fetch(
+        "/api/flights/search?" +
+          new URLSearchParams({
+            departure,
+            destination,
+            days,
+            departureDate: departureDate || queryDate,
+          })
+      )
+        .then((res) => res.json())
+        .then((data) => {
+          console.log("data:::::", data);
+        });
+    }
+  }, [router.query, departureDate]);
+
   return (
     <Grid container spacing={2}>
       <Grid item xs={8}>

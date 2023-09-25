@@ -8,6 +8,7 @@ import Typography from "@mui/material/Typography";
 import cardBg from "../images/card-img.jpg";
 import Image from "next/image";
 import { Grid } from "@mui/material";
+import Link from "next/link";
 
 const CardImage = styled(Image)(({ theme }) => ({
   width: "100%",
@@ -36,24 +37,26 @@ const Destination = ({ children }) => (
 
 export default function PackageCard({ packageDetail }) {
   return (
-    <CardContainer>
-      <CardMedia>
-        <CardImage src={cardBg} alt="quote" />
-      </CardMedia>
-      <CardContent>
-        <Destination>{packageDetail.destination}</Destination>
-        <Quote>{packageDetail.quote}</Quote>
-      </CardContent>
-      <CardActions disableSpacing>
-        <Grid container spacing={6}>
-          <Grid item xs>
-            <ButtonText>{packageDetail.days} days</ButtonText>
+    <Link href={`/packages/` + packageDetail.id}>
+      <CardContainer>
+        <CardMedia>
+          <CardImage src={cardBg} alt="quote" />
+        </CardMedia>
+        <CardContent>
+          <Destination>{packageDetail.destination}</Destination>
+          <Quote>{packageDetail.quote}</Quote>
+        </CardContent>
+        <CardActions disableSpacing>
+          <Grid container spacing={6}>
+            <Grid item xs>
+              <ButtonText>{packageDetail.days} days</ButtonText>
+            </Grid>
+            <Grid item xs={4}>
+              <ButtonText>{packageDetail.priceStartFrom} kr</ButtonText>
+            </Grid>
           </Grid>
-          <Grid item xs={4}>
-            <ButtonText>{packageDetail.priceStartFrom} kr</ButtonText>
-          </Grid>
-        </Grid>
-      </CardActions>
-    </CardContainer>
+        </CardActions>
+      </CardContainer>
+    </Link>
   );
 }

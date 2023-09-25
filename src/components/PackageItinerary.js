@@ -8,8 +8,20 @@ import TimelineDot from "@mui/lab/TimelineDot";
 import HotelIcon from "@mui/icons-material/Hotel";
 import Typography from "@mui/material/Typography";
 import { Flight } from "@mui/icons-material";
+import { styled } from "@mui/material";
 
-export default function PackageItinerary() {
+const TextSecondary = ({ children }) => (
+  <Typography variant="button" component="span" color={"text.secondary"}>
+    {children}
+  </Typography>
+);
+
+const StyledTimelineContent = styled(TimelineContent)(({ theme }) => ({
+  py: "12px",
+  px: 2,
+}));
+
+export default function PackageItinerary({ packageDetail }) {
   return (
     <Timeline
       position="right"
@@ -27,16 +39,12 @@ export default function PackageItinerary() {
           </TimelineDot>
           <TimelineConnector />
         </TimelineSeparator>
-        <TimelineContent sx={{ py: "12px", px: 2 }}>
-          <Typography
-            variant="button"
-            component="span"
-            color={"text.secondary"}
-          >
-            Flight
+        <StyledTimelineContent>
+          <TextSecondary>Flight</TextSecondary>
+          <Typography color={"text.secondary"}>
+            {packageDetail.departureFrom} - {packageDetail.destination}
           </Typography>
-          <Typography color={"text.secondary"}>Stockholm - Dubai</Typography>
-        </TimelineContent>
+        </StyledTimelineContent>
       </TimelineItem>
       <TimelineItem>
         <TimelineSeparator>
@@ -46,16 +54,12 @@ export default function PackageItinerary() {
           </TimelineDot>
           <TimelineConnector />
         </TimelineSeparator>
-        <TimelineContent sx={{ py: "12px", px: 2 }}>
-          <Typography
-            variant="button"
-            component="span"
-            color={"text.secondary"}
-          >
-            Stay
+        <StyledTimelineContent>
+          <TextSecondary>Stay</TextSecondary>
+          <Typography color={"text.secondary"}>
+            {packageDetail.days} Days in {packageDetail.destination}
           </Typography>
-          <Typography color={"text.secondary"}>7 Days in Dubai</Typography>
-        </TimelineContent>
+        </StyledTimelineContent>
       </TimelineItem>
       <TimelineItem>
         <TimelineSeparator>
@@ -64,16 +68,12 @@ export default function PackageItinerary() {
             <Flight />
           </TimelineDot>
         </TimelineSeparator>
-        <TimelineContent sx={{ py: "12px", px: 2 }}>
-          <Typography
-            variant="button"
-            component="span"
-            color={"text.secondary"}
-          >
-            Flight
+        <StyledTimelineContent>
+          <TextSecondary>Flight</TextSecondary>
+          <Typography color={"text.secondary"}>
+            {packageDetail.destination} - {packageDetail.departureFrom}
           </Typography>
-          <Typography color={"text.secondary"}>Dubai - Stockholm</Typography>
-        </TimelineContent>
+        </StyledTimelineContent>
       </TimelineItem>
     </Timeline>
   );
