@@ -4,7 +4,6 @@ import {
   CardActions,
   CardContent,
   Grid,
-  Stack,
   Typography,
   styled,
 } from "@mui/material";
@@ -12,14 +11,26 @@ import FlightIcon from "@mui/icons-material/Flight";
 import TripItinerary from "../../src/components/PackageItinerary";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import ItineraryTitle from "../../src/components/ItineraryTitle";
 import Link from "next/link";
+import ItineraryCard from "../../src/components/ItineraryCard";
 
 const ContainerBox = styled(Box)(({ theme }) => ({
   backgroundColor: "primary.dark",
   border: "solid 1px #ddd",
   padding: "10px",
 }));
+
+const linkToFlightOptions = (packageDetail) =>
+  "/packages/flights?date=" +
+  packageDetail?.cheapestUpcomingDate +
+  "&location=" +
+  packageDetail?.destination +
+  "&id=" +
+  packageDetail?.id +
+  "&days=" +
+  packageDetail?.days +
+  "&departureFrom=" +
+  packageDetail?.departureFrom;
 
 const dummyContent = `This is dummy content to fill the page. Sed maximus, nunc in vulputate tempus, enim quam tincidunt turpis,
 id tempor metus odio nec nisl. Maecenas ut pharetra augue. Donec
@@ -50,14 +61,13 @@ felis, tempus placerat risus semper eu.`;
 
 export default function PackageDetail({}) {
   const router = useRouter();
-  const packageId = router.query.packageId || 1;
   const [packageDetail, setPackageObj] = useState([]);
 
   useEffect(() => {
-    fetch("/api/packages/details?id=" + packageId)
+    fetch("/api/packages/details?id=" + router.query.packageId)
       .then((res) => res.json())
-      .then((data) => setPackageObj(data[0]));
-  }, []);
+      .then((data) => setPackageObj(data));
+  }, [router.query]);
 
   return (
     <Grid container spacing={2}>
@@ -65,17 +75,17 @@ export default function PackageDetail({}) {
         <ContainerBox>
           <CardContent>
             <Typography gutterBottom variant="h5" component="div">
-              {packageDetail.quote}
+              {packageDetail?.quote}
             </Typography>
             <Typography
               sx={{ pb: "30px" }}
               variant="body2"
               color="text.secondary"
             >
-              {`${packageDetail.destination} (${packageDetail.days} Days)`}
+              {`${packageDetail?.destination} (${packageDetail?.days} Days)`}
             </Typography>
             <Typography variant="body2" sx={{ pb: "30px" }}>
-              {packageDetail.description}
+              {packageDetail?.description}
             </Typography>
             <Typography gutterBottom variant="body2" sx={{ lineHeight: 1.8 }}>
               {dummyContent}
@@ -84,43 +94,23 @@ export default function PackageDetail({}) {
           <CardActions>
             <FlightIcon fontSize="small" />
             <Typography variant="body2" color="text.secondary">
-              {packageDetail.departureFrom} - {packageDetail.destination},{" "}
-              {packageDetail.destination} -{packageDetail.departureFrom}
+              {packageDetail?.departureFrom} - {packageDetail?.destination},{" "}
+              {packageDetail?.destination} -{packageDetail?.departureFrom}
             </Typography>
           </CardActions>
         </ContainerBox>
       </Grid>
 
-      <Grid item xs={4}>
-        <ContainerBox>
-          <Stack alignContent={"center"}>
-            <ItineraryTitle
-              title={`Starting from ${packageDetail.priceStartFrom}KR`}
-            />
-            <CardContent>
-              <TripItinerary packageDetail={packageDetail} />
-            </CardContent>
-            <Link
-              href={
-                "/itinerary/create?date=" +
-                packageDetail.cheapestUpcomingDate +
-                "&location=" +
-                packageDetail.destination +
-                "&id=" +
-                packageDetail.id +
-                "&days=" +
-                packageDetail.days +
-                "&departureFrom=" +
-                packageDetail.departureFrom
-              }
-            >
-              <Button variant="contained" size="large" fullWidth>
-                Start Planning
-              </Button>
-            </Link>
-          </Stack>
-        </ContainerBox>
-      </Grid>
+      <ItineraryCard title={`Starting from ${packageDetail?.priceStartFrom}KR`}>
+        <CardContent>
+          <TripItinerary packageDetail={packageDetail} />
+        </CardContent>
+        <Link href={linkToFlightOptions(packageDetail)}>
+          <Button variant="contained" size="large" fullWidth>
+            Start Planning
+          </Button>
+        </Link>
+      </ItineraryCard>
     </Grid>
   );
 }

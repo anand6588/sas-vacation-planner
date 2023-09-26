@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Button, Grid, Stack, Typography, styled } from "@mui/material";
-import TripItinerary from "./TripItinerary";
+import TripItinerary from "./TravelItinerary";
 
 const Item = styled(Grid)(({ theme }) => ({
   border: "solid 1px #ccc",

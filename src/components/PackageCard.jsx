@@ -7,8 +7,7 @@ import CardActions from "@mui/material/CardActions";
 import Typography from "@mui/material/Typography";
 import cardBg from "../images/card-img.jpg";
 import Image from "next/image";
-import { Grid } from "@mui/material";
-import Link from "next/link";
+import { Grid, Link } from "@mui/material";
 
 const CardImage = styled(Image)(({ theme }) => ({
   width: "100%",

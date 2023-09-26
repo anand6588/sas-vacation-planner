@@ -42,7 +42,7 @@ export default function PackageItinerary({ packageDetail }) {
         <StyledTimelineContent>
           <TextSecondary>Flight</TextSecondary>
           <Typography color={"text.secondary"}>
-            {packageDetail.departureFrom} - {packageDetail.destination}
+            {packageDetail?.departureFrom} - {packageDetail?.destination}
           </Typography>
         </StyledTimelineContent>
       </TimelineItem>
@@ -57,7 +57,7 @@ export default function PackageItinerary({ packageDetail }) {
         <StyledTimelineContent>
           <TextSecondary>Stay</TextSecondary>
           <Typography color={"text.secondary"}>
-            {packageDetail.days} Days in {packageDetail.destination}
+            {packageDetail?.days} Days in {packageDetail?.destination}
           </Typography>
         </StyledTimelineContent>
       </TimelineItem>
@@ -71,7 +71,7 @@ export default function PackageItinerary({ packageDetail }) {
         <StyledTimelineContent>
           <TextSecondary>Flight</TextSecondary>
           <Typography color={"text.secondary"}>
-            {packageDetail.destination} - {packageDetail.departureFrom}
+            {packageDetail?.destination} - {packageDetail?.departureFrom}
           </Typography>
         </StyledTimelineContent>
       </TimelineItem>

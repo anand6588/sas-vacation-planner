@@ -24,7 +24,13 @@ const SearchFlights = (req, res) => {
       flight.destination == departure
   );
 
-  res.status(200).json({ outboundFlights, inboundFlights });
+  res
+    .status(200)
+    .json(
+      outboundFlights.length && inboundFlights.length
+        ? { outboundFlights, inboundFlights }
+        : []
+    );
 };
 
 export default SearchFlights;

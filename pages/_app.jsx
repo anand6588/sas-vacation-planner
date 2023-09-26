@@ -15,8 +15,8 @@ export default function App({ Component, pageProps }) {
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <Layout>
         <Head>
-          <link rel="icon" href="/favicon.ico" />
           <title>{siteTitle}</title>
+          <link rel="icon" href="/favicon.ico" />
           <meta name="viewport" content="initial-scale=1, width=device-width" />
           <meta
             name="description"

@@ -1,9 +1,9 @@
 import * as React from "react";
 
 import { Box, Card, CardContent, CardHeader, Grid, Paper } from "@mui/material";
-import FlightOptionListItem from "./FlightOptionListItem";
+import FlightListItem from "./FlightListItem";
 
-export default function FlightOptions({
+export default function FlightsList({
   title,
   options,
   selectedFlight,
@@ -16,8 +16,8 @@ export default function FlightOptions({
         <CardContent>
           <Box sx={{ flexGrow: 1 }}>
             <Grid container spacing={2} margin={0}>
-              {options.map((flightDetails, i) => (
-                <FlightOptionListItem
+              {options?.map((flightDetails, i) => (
+                <FlightListItem
                   details={flightDetails}
                   selectedFlight={selectedFlight}
                   setSelectedFlight={setSelectedFlight}

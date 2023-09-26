@@ -24,7 +24,6 @@ export default function Trips({}) {
           <Typography variant="body2" component="div">
             You have no upcoming trips!
           </Typography>
-
           <BookedTripListItem />
           <BookedTripListItem />
           <BookedTripListItem />

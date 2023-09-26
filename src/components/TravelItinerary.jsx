@@ -30,14 +30,26 @@ export default function TripItinerary({ outboundFlight, inboundFlight, days }) {
           <TimelineConnector sx={{ bgcolor: "primary.main" }} />
         </TimelineSeparator>
         <TimelineContent sx={{ py: "12px", px: 2 }}>
-          <Typography variant="button" component="span" color={"text.primary"}>
-            {dayjs(outboundFlight?.date).format("MMM DD, YYYY")}{" "}
-            {outboundFlight?.time}
-          </Typography>
-          <Typography variant="body2" color={"text.secondary"}>
-            {outboundFlight?.departure} - {outboundFlight?.destination} (
-            {formatTravelDuration(outboundFlight?.duration)})
-          </Typography>
+          {outboundFlight ? (
+            <>
+              <Typography
+                variant="button"
+                component="span"
+                color={"text.primary"}
+              >
+                {dayjs(outboundFlight?.date).format("MMM DD, YYYY")}{" "}
+                {outboundFlight?.time}
+              </Typography>
+              <Typography variant="body2" color={"text.secondary"}>
+                {outboundFlight?.departure} - {outboundFlight?.destination} (
+                {formatTravelDuration(outboundFlight?.duration)})
+              </Typography>
+            </>
+          ) : (
+            <Typography variant="button" color={"text.secondary"}>
+              No Fight selected for departure
+            </Typography>
+          )}
         </TimelineContent>
       </TimelineItem>
       <TimelineItem>
@@ -69,14 +81,26 @@ export default function TripItinerary({ outboundFlight, inboundFlight, days }) {
           </TimelineDot>
         </TimelineSeparator>
         <TimelineContent sx={{ py: "12px", px: 2 }}>
-          <Typography variant="button" component="span" color={"text.primary"}>
-            {dayjs(inboundFlight?.date).format("MMM DD, YYYY")}{" "}
-            {inboundFlight?.time}
-          </Typography>
-          <Typography variant="body2" color={"text.secondary"}>
-            {inboundFlight?.departure} - {inboundFlight?.destination} (
-            {formatTravelDuration(inboundFlight?.duration)})
-          </Typography>
+          {inboundFlight ? (
+            <>
+              <Typography
+                variant="button"
+                component="span"
+                color={"text.primary"}
+              >
+                {dayjs(inboundFlight?.date).format("MMM DD, YYYY")}{" "}
+                {inboundFlight?.time}
+              </Typography>
+              <Typography variant="body2" color={"text.secondary"}>
+                {inboundFlight?.departure} - {inboundFlight?.destination} (
+                {formatTravelDuration(inboundFlight?.duration)})
+              </Typography>{" "}
+            </>
+          ) : (
+            <Typography variant="button" color={"text.secondary"}>
+              No Fight selected for your return
+            </Typography>
+          )}
         </TimelineContent>
       </TimelineItem>
     </Timeline>
