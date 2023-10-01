@@ -28,3 +28,27 @@ jobs:
           subscription-id: ${{ secrets.SUBSCRIPTION_ID }}
       - run: |
           az account show
+
+      - name: Check out repository
+        uses: actions/checkout@v3
+
+      - name: Configure Terraform Backend
+        run: |
+          terraform init
+
+      - name: Plan Terraform Changes
+        run: terraform plan
+
+      - name: Apply Terraform Changes
+        id: tf
+        run: |
+          terraform apply -auto-approve
+          echo "::set-output name=login_server::$(terraform output -raw login_server)"
+          echo "::set-output name=admin_username::$(terraform output -raw admin_username)"
+          echo "::set-output name=admin_password::$(terraform output -raw admin_password)"
+          echo "::set-output name=docker_image_name::$(terraform output -raw docker_image_name)"
+          echo "::set-output name=docker_image_tag::$(terraform output -raw docker_image_tag)"
+
+      - run: echo ${{ steps.tf.outputs.login_server }}
+      - run: echo ${{ steps.tf.outputs.admin_username }}
+      - run: echo ${{ steps.tf.outputs.admin_password }}
