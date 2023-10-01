@@ -79,25 +79,3 @@ resource "azurerm_linux_web_app" "webapp" {
     }
   }
 }
-
-# https://stackoverflow.com/questions/69925970/how-to-save-terraform-output-variable-into-a-github-action-s-environment-variabl
-output "login_server" {
-  value = azurerm_container_registry.acr.login_server
-}
-
-output "docker_image_name" {
-  value = var.docker_image_name
-}
-
-output "docker_image_tag" {
-  value = var.docker_image_tag
-}
-
-output "admin_username" {
-  value = azurerm_container_registry.acr.admin_username
-}
-
-output "admin_password" {
-  sensitive = true
-  value     = azurerm_container_registry.acr.admin_password
-}

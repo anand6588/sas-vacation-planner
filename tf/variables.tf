@@ -29,7 +29,7 @@ variable "azurerm_container_registry_name" {
 }
 
 variable "azurerm_linux_web_app_name" {
-  description = "Name for the azure container registry."
+  description = "Name for the web container linux app."
   type        = string
   default     = "vacation-planner-sample-webapp"
 }
@@ -41,10 +41,13 @@ variable "PORT" {
 }
 
 variable "docker_image_name" {
+  description = "Name of the docker image."
   type = string
   default = "sample-vacation-planner"
 }
+
 variable "docker_image_tag" {
+  description = "Tag of the docker image."
   type = string
   default = "latest"
 }

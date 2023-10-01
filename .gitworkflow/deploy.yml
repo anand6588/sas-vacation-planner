@@ -1,13 +1,13 @@
-name: deploying app to azure
+name: Create Infra and Deploy
 on:
   workflow_dispatch:
-    inputs:
-      description: "Terraform Action- Apply or Destroy"
-      default: "apply"
+  push:
+    branches:
+      - "main"
 
 jobs:
-  terraform:
-    name: "Terraform"
+  deployment:
+    name: Build and Deploy to Preview Env
     runs-on: ubuntu-latest
     env:
       ARM_CLIENT_ID: ${{ secrets.CLIENT_ID }}
@@ -15,21 +15,11 @@ jobs:
       ARM_SUBSCRIPTION_ID: ${{ secrets.SUBSCRIPTION_ID }}
       ARM_TENANT_ID: ${{ secrets.TENANT_ID }}
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-  deployment:
-    name: Build and Deploy to Preview Env
-    needs: stack
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v1
-      - name: Terraform Init
-        run: terraform init
-      - name: Terraform Plan
-        run: terraform plan
-      - name: Terraform Apply
-        run: terraform apply
+      - name: Az CLI login
+        uses: azure/login@v1
+        with:
+          client-id: ${{ secrets.CLIENT_ID }}
+          tenant-id: ${{ secrets.TENANT_ID }}
+          subscription-id: ${{ secrets.SUBSCRIPTION_ID }}
+      - run: |
+          az account show
