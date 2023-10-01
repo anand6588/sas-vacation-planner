@@ -40,7 +40,6 @@ export default function Home({}) {
     <>
     
       <SearchBar filters={filters} setFilters={setFilters} />
-      herlereo
       <Category variant="h6">
         {isFilterChanged
           ? `Trips from your search combination`
