@@ -1,6 +1,10 @@
 # Project Title
 
-Vacation Planner
+Vacation Planner 
+
+## Project Link
+
+https://vacation-planner-sample-webapp.azurewebsites.net/
 
 ## Description
 
@@ -62,7 +66,7 @@ This project was created by create-nextjs-app command initially
 * .Dockerfile
   * A dockerfile to containerize the app(Exposes Port: 80)
     
-## Azure infrastructure creation flow
+### Azure infrastructure creation flow
 
   * Created an azure subscription in free tier
     
@@ -82,7 +86,7 @@ This project was created by create-nextjs-app command initially
 
   * And, there is an another resource group created with storage account under the same azure subscription to store terraform state file
 
-  ## Terraform flow to create infrastructure
+  ### Terraform flow to create infrastructure
   
   * Creates a resource group
     
